@@ -1,0 +1,16 @@
+# configs/sshd_config
+
+# Disable root login
+PermitRootLogin no
+
+# Disable password authentication
+PasswordAuthentication no
+
+# Enforce key authentication
+PubkeyAuthentication yes
+
+# Other recommended hardening
+ChallengeResponseAuthentication no
+UsePAM yes
+X11Forwarding no
+AllowTcpForwarding no

@@ -1,12 +1,31 @@
 #!/bin/bash
+# Disable root login by replacing sshd_config
 
-# Script to disable root login in SSH 
+CONFIG_FILE="../configs/sshd_config"
+TARGET_FILE="/etc/ssh/sshd_config"
 
-SSHD_config="/etc/ssh/sshd_config"                                     # path to ssh configuration file
+if [ ! -f "$CONFIG_FILE" ]; then
+    echo "Config file not found: $CONFIG_FILE"
+    exit 1
+fi
 
-sudo cp $SSHD_config ${SSHD_config}.bak                                     # backup the original config file
-sudo sed -i 's/^#PermitRootLogin.*/PermitRootLogin no/' $SSHD_config        # Disable root login
+sudo cp "$CONFIG_FILE" "$TARGET_FILE"
 
-sudo systemctl restart sshd                                                 # Restart SSH service to apply changes
+# Restart SSH service (multi-distro)
+if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    case "$ID" in
+        debian|ubuntu)
+            sudo systemctl restart ssh
+            ;;
+        rhel|centos|fedora|arch)
+            sudo systemctl restart sshd
+            ;;
+        *)
+            echo "Unsupported distribution: $ID"
+            exit 1
+            ;;
+    esac
+fi
 
-echo "ROOT LOGIN DISABLED"
+echo "Root login disabled and SSH hardened."
