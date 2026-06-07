@@ -4,14 +4,22 @@
 CONFIG_FILE="../configs/sshd_config"
 TARGET_FILE="/etc/ssh/sshd_config"
 
+# Step 1: Ensure config file exists
 if [ ! -f "$CONFIG_FILE" ]; then
-    echo "Config file not found: $CONFIG_FILE"
-    exit 1
+    echo "Config file not found at $CONFIG_FILE. Copying system config instead..."
+    if [ -f "$TARGET_FILE" ]; then
+        mkdir -p ../configs
+        sudo cp "$TARGET_FILE" "$CONFIG_FILE"
+    else
+        echo "System sshd_config not found. Exiting."
+        exit 1
+    fi
 fi
 
+# Step 2: Apply hardened config
 sudo cp "$CONFIG_FILE" "$TARGET_FILE"
 
-# Restart SSH service (multi-distro)
+# Step 3: Restart SSH service (multi-distro)
 if [ -f /etc/os-release ]; then
     . /etc/os-release
     case "$ID" in
@@ -28,4 +36,5 @@ if [ -f /etc/os-release ]; then
     esac
 fi
 
-echo "Root login disabled and SSH hardened."
+echo "Root login disabled     .      ."
+echo "                         /\/\/\ "
