@@ -18,6 +18,20 @@
 - **Setup:** Attempt SSH login with wrong key.
 - **Expected Output:** Access denied.
 
+##Test Case 5: Multi‑Key Authentication Behavior
+-Setup:
+Place two keys in ~/.ssh/ — your valid id_ed25519.pub and an invalid badkey.pub.W
+Try logging in with the invalid key using:
+bash
+ssh -i ~/.ssh/badkey inoske@localhost
+Then try logging in with the valid key:
+bash
+ssh -i ~/.ssh/id_ed25519 inoske@localhost
+Expected Output:
+Invalid key → Access denied.
+Valid key → Successful login.
+Logs (/var/log/auth.log or /var/log/secure) should show the failed attempt clearly.
+
 
 ---
 
