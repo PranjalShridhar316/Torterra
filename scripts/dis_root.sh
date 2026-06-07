@@ -1,40 +1,38 @@
 #!/bin/bash
-# Disable root login by replacing sshd_config
+# Torterra v3 - Disable root SSH login safely (multi-distro)
 
-CONFIG_FILE="../configs/sshd_config"
-TARGET_FILE="/etc/ssh/sshd_config"
+set -euo pipefail
 
-# Step 1: Ensure config file exists
-if [ ! -f "$CONFIG_FILE" ]; then
-    echo "Config file not found at $CONFIG_FILE. Copying system config instead..."
-    if [ -f "$TARGET_FILE" ]; then
-        mkdir -p ../configs
-        sudo cp "$TARGET_FILE" "$CONFIG_FILE"
-    else
-        echo "System sshd_config not found. Exiting."
-        exit 1
-    fi
+# Path to SSH configuration file
+SSHD_CONFIG="/etc/ssh/sshd_config"
+
+# Backup file with timestamp for rollback safety
+BACKUP="/etc/ssh/sshd_config.bak_$(date +%F_%T)"
+
+echo "[*] Detecting SSH service..."
+
+# Detect correct SSH service name based on system
+if systemctl list-units --type=service | grep -q "ssh.service"; then
+    SSH_SERVICE="ssh"
+else
+    SSH_SERVICE="sshd"
 fi
 
-# Step 2: Apply hardened config
-sudo cp "$CONFIG_FILE" "$TARGET_FILE"
+# Create backup before modifying anything (safety first)
+echo "[*] Backing up SSH config..."
+sudo cp "$SSHD_CONFIG" "$BACKUP"
 
-# Step 3: Restart SSH service (multi-distro)
-if [ -f /etc/os-release ]; then
-    . /etc/os-release
-    case "$ID" in
-        debian|ubuntu)
-            sudo systemctl restart ssh
-            ;;
-        rhel|centos|fedora|arch)
-            sudo systemctl restart sshd
-            ;;
-        *)
-            echo "Unsupported distribution: $ID"
-            exit 1
-            ;;
-    esac
-fi
+echo "[*] Disabling root login..."
 
-echo "Root login disabled     .      ."
-echo "                         /\/\/\ "
+# Disable root SSH login (prevents direct root access over SSH)
+sudo sed -i 's/^#\?PermitRootLogin.*/PermitRootLogin no/' "$SSHD_CONFIG"
+
+# Validate SSH configuration before restarting service
+echo "[*] Validating SSH config..."
+sudo sshd -t
+
+# Restart SSH service depending on distro
+echo "[*] Restarting SSH service..."
+sudo systemctl restart "$SSH_SERVICE"
+
+echo "[✔] Root SSH login disabled safely"
