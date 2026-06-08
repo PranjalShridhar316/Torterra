@@ -128,7 +128,7 @@ sudo ./intrusion_prevention.sh
 
 
 ---
-*Banner design by Ashita Dhiman*
+*Banner design by Ashita Dhiman*.
 Thank you so much, Ashita, for helping me with the banner design. It really makes my project look polished and professional, and I truly appreciate your creativity and support.
 
 ---
