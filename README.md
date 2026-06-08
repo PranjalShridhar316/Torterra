@@ -3,6 +3,7 @@
 
 🛡️ Torterra – SSH Hardening & Security Toolkit
 
+---
 📖 Overview
 
 Torterra is a comprehensive cybersecurity toolkit designed to demonstrate layered defense strategies for securing SSH environments in Linux systems.
@@ -20,6 +21,7 @@ Unlike standalone scripts, Torterra is structured as a multi-phase security ecos
 
 It also includes a terminal-based dashboard, turning raw security scripts into an interactive control center.
 
+---
 🚀 Key Features (Phase-Based Design)
 🔹 Phase 1 – SSH Hardening (Preventive Security)
 Disable root login (dis_root.sh)
@@ -59,6 +61,7 @@ System resilience verification under attack conditions
 
 Torterra includes a terminal-based security dashboard (dashboard.sh) that acts as a central SOC control panel.
 
+---
 🧠 Features:
 ASCII-based SOC banner interface
 Interactive menu system
@@ -66,6 +69,7 @@ System status overview
 Real-time monitoring integration
 Quick access to all security modules
 
+---
 🖥️ Dashboard Capabilities:
 System hardening control
 Log monitoring activation
@@ -73,6 +77,7 @@ Intrusion prevention execution
 Threat simulation execution
 Incident response access
 
+---
 📂 Project Structure
 Torterra/
 ├── configs/                    # SSH configuration files
@@ -99,7 +104,7 @@ Torterra/
 │
 └── README.md
 
-
+---
 ⚙️ Installation
 git clone https://github.com/PranjalShridhar316/Torterra.git
 cd Torterra/scripts
@@ -121,6 +126,11 @@ sudo ./intrusion_prevention.sh
 📊 Launch Dashboard
 ./torterra.sh
 
+
+---
+*Banner design by Ashita Dhiman*
+
+---
 🖥️ Dashboard UI
 
 ████████╗  ██████╗    ██████╗  ████████╗ ███████╗ ██████╗  ██████╗   █████╗ 
@@ -144,11 +154,13 @@ Label:
 Select option: 
 
 
+---
 👨‍💻 Author
 Pranjal Shridhar Verma  
 Cybersecurity student 
 Focused on system security, automation, and applied cybersecurity projects.
 
+---
 🤝 Contributing
 Contributions, issues, and feature requests are welcome.
 Please open an issue or submit a pull request to collaborate.
