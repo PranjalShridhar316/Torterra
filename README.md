@@ -164,7 +164,7 @@ It currently covers the core phases (Hardening, Monitoring, Prevention, Response
 ---
 👨‍💻 Author
 Pranjal Shridhar Verma  
-Cybersecurity student 
+Cybersecurity student......
 Focused on system security, automation, and applied cybersecurity projects.
 
 ---
