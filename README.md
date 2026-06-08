@@ -154,6 +154,12 @@ Label:
 
 Select option: 
 
+---
+### 🚀 Project Status
+This is the **base model** of the Torterra SSH Hardening & Security Toolkit.  
+It currently covers the core phases (Hardening, Monitoring, Prevention, Response, Auditing, and Simulation).  
+
+🔧 The project is under active development and will **gradually improve** with new features, optimizations, and enhanced documentation.
 
 ---
 👨‍💻 Author
