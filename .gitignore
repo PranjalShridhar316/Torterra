@@ -1,0 +1,13 @@
+# Logs and temp files
+*.log
+*.tmp
+*.swp
+
+# Environment configs
+.env
+
+# Backup files
+*~
+
+# Node modules (if used)
+node_modules/
