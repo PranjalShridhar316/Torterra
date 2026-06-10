@@ -23,6 +23,8 @@ It also includes a terminal-based dashboard, turning raw security scripts into a
 
 ---
 🚀 Key Features (Phase-Based Design)
+
+
 🔹 Phase 1 – SSH Hardening (Preventive Security)
 Disable root login (dis_root.sh)
 Enforce SSH key-based authentication (key_setup.sh)
