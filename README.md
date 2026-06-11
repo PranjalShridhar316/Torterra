@@ -81,16 +81,19 @@ Incident response access
 
 ---
 📂 Project Structure
-Torterra/
+Torterra/ 
+
 ├── configs/                    # SSH configuration files
 │   └── sshd_config
 │
+
 ├── docs/                       # Phase-wise documentation
 │   ├── monitoring_guide.md
 │   ├── prevention.md
 │   ├── security_principles.md
 │   └── intrusion/
 │
+
 ├── scripts/                    # Core automation scripts
 │   ├── dashboard.sh
 │   ├── dis_root.sh
@@ -101,6 +104,7 @@ Torterra/
 │   ├── rep_audit.sh
 │   └── thrt_simulation.sh
 │
+
 ├── tests/                      # Validation & test scenarios
 │   └── test_cases.md
 │
